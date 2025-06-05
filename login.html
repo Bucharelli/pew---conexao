@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Login</title>
+</head>
+<body>
+    <main>
+        <form id="form" method="post" action="insert.php">
+            <div class="nome">
+                <h1>Login</h1>
+            </div>
+
+            <div class="campos">
+                <label for="login" id="label-login">Nome</label><br>
+                <input type="text" id="nome" name="login"><br><br>
+
+                <label for="email">Email</label><br>
+                <input type="email" id="email" name="email" value="@gmail.com"><br><br>
+
+                <label for="senha">Senha</label><br>
+                <input type="password" id="senha" name="senha"><br><br>
+
+                <label for="confirmar-senha">Confirmar Senha</label><br>
+                <input type="password" id="confirmar-senha" name="confirmar-senha"><br><br>
+
+                <label for="telefone">telefone</label><br>
+                <input type="number" id="telefone" name="telefone"><br><br>
+
+                <label for="imagem">imagem</label><br>
+                <input type="file" name="imagem">
+            </div>
+            
+            <br>
+
+            <div class="enviar">
+                <button id="enviar" type="submit" disabled>Entrar</button>
+                <input class="botao-limpar" type="reset">
+            </div>
+        </form>
+    </main>
+    <script src="comandos.js"></script>
+</body>
+</html>
