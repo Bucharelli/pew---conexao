@@ -9,7 +9,6 @@ form.addEventListener('keyup', function() {
     checkInputs();
 });
 
-
 function checkInputs() {
     const nome = document.getElementById('nome').value.trim();
     const email = document.getElementById('email').value.trim();
@@ -18,6 +17,16 @@ function checkInputs() {
     const telefone = document.getElementById('telefone').value.trim();
 
     let formInvalido = true;
+    /*
+    var icon = /([!@#$%&*_])/;
+    var number = /([0-9])/;
+    var word = /([a-z].*[A-Z])|([A-Z].*[a-z])/;
+    */
+
+    const temLetraMaiuscula = /[A-Z]/g.test(senha);
+    const temNumeros = /[0-9]/g.test(senha);
+    const temLetraMinuscula = /[a-z]/g.test(senha);
+    const temCaractereEspecial = /[^a-zA-Z0-9\s]/g.test(senha);
 
     // Validando o campo "Nome"
     if (nome === '') {
@@ -26,8 +35,6 @@ function checkInputs() {
     } else {
         setSucessFor(document.getElementById('nome'));
     }
-
-    // Validando o campo "Email"
     if (email === '') {
         setErrorFor(document.getElementById('email'), 'O email é obrigatório!');
         formInvalido = true;
@@ -37,19 +44,27 @@ function checkInputs() {
     } else {
         setSucessFor(document.getElementById('email'));
     }
-
-    // Validando o campo "Senha"
     if (senha === '') {
         setErrorFor(document.getElementById('senha'), 'A senha é obrigatória!');
         formInvalido = true;
-    } else if (senha.length < 7) {
+    } else if (senha.length < 8) {
         setErrorFor(document.getElementById('senha'), 'A senha precisa de no mínimo 7 caracteres!');
         formInvalido = true;
+    } else if (temLetraMaiuscula) {
+        setErrorFor(document.getElementById('senha'), 'A senha precisa possuir um caracter em MAIÚSCULO');
+        formInvalido = true;
+   /* } else if (temLetraMinuscula) {
+        setErrorFor(document.getElementById('senha'), 'A senha precisa possuir um caracter em MINUSCULO');
+        formInvalido = true;
+    } else if (temCaractereEspecial) {
+        setErrorFor(document.getElementById('senha'), 'A senha precisa possuir um caracter em ESPECIAL');
+        formInvalido = true;
+    } else if (temNumeros) {
+        setErrorFor(document.getElementById('senha'), 'A senha precisa possuir um NÚMERO');
+        formInvalido = true;*/
     } else {
         setSucessFor(document.getElementById('senha'));
     }
-
-    // Validando o campo "Confirmar Senha"
     if (confirmarSenha === '') {
         setErrorFor(document.getElementById('confirmar-senha'), 'Confirmar a senha é obrigatório!');
         formInvalido = true;
@@ -59,16 +74,12 @@ function checkInputs() {
     } else {
         setSucessFor(document.getElementById('confirmar-senha'));
     }
-
-    // Validando o campo "Telefone"
     if (telefone === '') {
         setErrorFor(document.getElementById('telefone'), 'O número de telefone é obrigatório!');
         formInvalido = true;
     } else {
         setSucessFor(document.getElementById('telefone'));
     }
-
-    // Atualizando o estado do botão com base na validade do formulários
     if (formInvalido) {
         enviar.disabled = false; // Habilita o botão
         enviar.style.backgroundColor = 'gray';
